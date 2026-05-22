@@ -1,0 +1,11 @@
+# macOS
+.DS_Store
+
+# Editor / backup
+*.swp
+*~
+.idea/
+.vscode/
+
+# Backups left behind by install.sh
+*.bak.[0-9]*
