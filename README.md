@@ -46,6 +46,28 @@ cd ~/.agent-config
 
 The installer is idempotent. Re-run it any time. Existing non-symlink files at target paths are backed up to `*.bak.<timestamp>` before being replaced.
 
+## How it works
+
+Two source files in this repo. `install.sh` symlinks them into each tool's expected location, so editing the source flows live to every consumer:
+
+```
+agent-config/
+│
+├── AGENTS.md  ──────► symlinked to:
+│                       ├── ~/.claude/CLAUDE.md                              (Claude Code)
+│                       ├── ~/.codex/AGENTS.md                               (Codex)
+│                       ├── ~/.config/opencode/AGENTS.md                     (OpenCode)
+│                       ├── ~/.gemini/GEMINI.md                              (Gemini CLI)
+│                       ├── ~/.config/github-copilot/                        (Copilot JB plugin)
+│                       │     global-copilot-instructions.md
+│                       └── ~/AGENTS.md                                      (shell / convenience)
+│
+└── bin/agent-env  ──► symlinked to:
+                        └── ~/.local/bin/agent-env                           (on PATH)
+```
+
+Cursor and Copilot CLI need a manual step each — see [Tools the installer can't fully automate](#tools-the-installer-cant-fully-automate) below.
+
 ## What it wires up
 
 | Tool | Path it reads | Handled by |
