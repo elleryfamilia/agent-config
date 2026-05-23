@@ -47,13 +47,7 @@ Also skip the full workflow when there's no real design decision to make — whe
 
 A final plan should include: objective, relevant context, approach, assumptions, risks, validation steps, rollback notes, first implementation step.
 
-# Validation harnesses
-- For any non-trivial work, proactively consider how it can be validated automatically, and build that harness as part of the work.
-- Match the harness to the change: web UI → Playwright tests for visuals and functionality; API/logic → unit/integration tests; data/scripts → assertions on output.
-- If building automated validation would require significant effort (e.g. complex E2E setup), say so and ask me to validate manually instead — don't skip validation silently.
-
-# Definition of done
+# Validation
+- For any non-trivial change, build the automated harness as part of the work. Match the harness to the change: web UI → Playwright tests for visuals and functionality; API/logic → unit/integration tests; data/scripts → assertions on output.
+- If a harness would take significant effort (e.g. complex E2E setup), surface that and ask me to validate manually — don't skip silently.
 - Before declaring work done, run the build, tests, and linter and report results honestly. If something failed or was skipped, say so plainly — don't claim success you didn't verify.
-
-# Maintenance
-- Keep this file tight. Prune stale or low-signal lines periodically; bloat dilutes everything else.
