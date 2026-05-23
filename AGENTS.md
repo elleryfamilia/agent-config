@@ -8,8 +8,6 @@
 - Rust projects: use cargo; lint with clippy and format with rustfmt.
 - Go projects: stick to the standard toolchain (`go build`/`test`/`fmt`/`vet`); add golangci-lint for stricter linting.
 - Prefer `rg` over grep, `fd` over find, and the `gh` CLI for GitHub operations.
-- Deploy on Railway by default.
-- Send/receive email via Resend.
 
 # Guardrails
 
