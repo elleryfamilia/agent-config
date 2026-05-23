@@ -39,7 +39,7 @@ Default planning workflow:
 2. Synthesize them into one candidate plan.
 3. Run 1 critic agent against the candidate plan.
 4. Revise the plan.
-5. Have a different AI tool/model review the final candidate plan with full context before implementation. Pick a peer that isn't the tool currently running this workflow — `agent-env` lists installed AI CLIs under "Available AI coding tools".
+5. Get a cross-model review of the final candidate plan before implementation. Either shell out to a peer AI CLI (see `agent-env`'s "Available AI coding tools" list) or spawn a sub-agent within the current tool using a different model. What matters is the *model* differs — same-tool-same-model is the only combination to avoid, since it defeats the purpose of a second opinion.
 
 Do not use the full workflow for trivial edits, typos, or obvious one-file fixes.
 
