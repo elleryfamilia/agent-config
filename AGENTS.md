@@ -39,7 +39,7 @@ Default planning workflow:
 2. Synthesize them into one candidate plan.
 3. Run 1 critic agent against the candidate plan.
 4. Revise the plan.
-5. Ask Codex CLI to review the final candidate plan with full context before implementation.
+5. Have a different AI tool/model review the final candidate plan with full context before implementation. Pick a peer that isn't the tool currently running this workflow — `agent-env` lists installed AI CLIs under "Available AI coding tools".
 
 Do not use the full workflow for trivial edits, typos, or obvious one-file fixes.
 
