@@ -33,10 +33,10 @@
 For non-trivial work, always create a plan before implementation.
 
 Default planning workflow:
-1. Use 3 parallel planning agents to explore different approaches.
-2. Synthesize them into one candidate plan.
-3. Run 1 critic agent against the candidate plan.
-4. Revise the plan.
+1. Explore 2–3 different approaches independently — in parallel if the tool supports concurrent sub-agents or tasks, sequentially otherwise.
+2. Synthesize the candidates into one preferred plan.
+3. Run a critic pass that actively looks for flaws in the synthesized plan. Use a separate sub-agent, task, or fresh session — self-critique inside the planning context tends to rubber-stamp.
+4. Revise based on the critic's findings.
 5. Get a cross-model review of the final candidate plan before implementation. Either shell out to a peer AI CLI (see `agent-env`'s "Available AI coding tools" list) or spawn a sub-agent within the current tool using a different model. Same-tool-same-model is the only combination to avoid — it defeats the purpose of a second opinion. Two qualifications:
    - **Use a model comparable to or stronger than the one doing the work.** A weaker reviewer (e.g. Haiku reviewing Opus's plan, or a small-tier model reviewing a frontier one) adds noise, not signal.
    - **Don't trust your memory for the current model lineup.** Your training data probably predates the latest releases. Before picking a reviewer, verify what's available via the tool's CLI (`--help`, model-list commands, or recent docs) — prefer the newest in a family rather than what you remember being "the latest."
