@@ -4,6 +4,8 @@ My personal AI coding rules and a tiny env-discovery script, wired into every to
 
 `AGENTS.md` is the single source of truth (the cross-tool standard stewarded by the [Agentic AI Foundation](https://agents.md/)). `install.sh` symlinks it into each tool's expected location so I never maintain rules in more than one place. Nothing in this repo hardcodes machine-specific details — `bin/agent-env` discovers those at runtime so the same files work on any host.
 
+**Requirements:** macOS or Linux · bash 3.2+ · `git` · `curl`
+
 ## Install
 
 ### One-liner (curl)
