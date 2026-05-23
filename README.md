@@ -6,9 +6,36 @@ My personal AI coding rules and a tiny env-discovery script, wired into every to
 
 ## Install
 
+### One-liner (curl)
+
 ```sh
-git clone https://github.com/elleryfamilia/agent-config ~/_git/agent-config
-cd ~/_git/agent-config
+curl -fsSL https://raw.githubusercontent.com/elleryfamilia/agent-config/main/bootstrap.sh | bash
+```
+
+Clones to `~/.agent-config` and runs the installer. Re-running updates the checkout and re-applies the install (idempotent).
+
+To preview without making changes:
+
+```sh
+curl -fsSL https://raw.githubusercontent.com/elleryfamilia/agent-config/main/bootstrap.sh | bash -s -- --dry-run
+```
+
+Env vars to override defaults:
+
+| Variable | Default | Purpose |
+|---|---|---|
+| `AGENT_CONFIG_DIR` | `$HOME/.agent-config` | clone destination |
+| `AGENT_CONFIG_REPO` | `https://github.com/elleryfamilia/agent-config` | repo URL (fork-friendly) |
+| `AGENT_CONFIG_REF` | `main` | branch/tag/sha to check out |
+| `AGENT_CONFIG_SKIP_INSTALL` | `0` | set to `1` to clone-only |
+
+**Trust note:** this is curl-pipe-bash. If you don't already trust the source, read [`bootstrap.sh`](./bootstrap.sh) and [`install.sh`](./install.sh) first.
+
+### Manual (clone)
+
+```sh
+git clone https://github.com/elleryfamilia/agent-config ~/.agent-config
+cd ~/.agent-config
 ./install.sh --dry-run    # preview
 ./install.sh              # do it
 ```
