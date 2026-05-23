@@ -12,9 +12,16 @@
 - Send/receive email via Resend.
 
 # Guardrails
-- Never commit or push directly to main/master — always work on a worktree branch.
-- Confirm before destructive or hard-to-reverse actions (rm -rf, DB drops, bulk deletes, file overwrites).
-- Never print, or commit secrets, credentials, or .env files.
+
+## Never
+- Commit or push directly to main/master — always work on a branch.
+- Print, log, or commit secrets, credentials, or `.env` files.
+- Run destructive or hard-to-reverse actions (`rm -rf`, DB drops, bulk deletes, file overwrites) without confirmation.
+
+## Ask first
+- Before modifying files I didn't mention.
+- After two failed attempts at the same problem — don't keep retrying blindly.
+- Before installing new dependencies, changing schemas, or restructuring directories.
 
 # Git
 - Commit at logical checkpoints with clear messages — don't wait to be told.
