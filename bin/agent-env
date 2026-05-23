@@ -95,6 +95,27 @@ print_services() {
     fi
 }
 
+# AI coding tool CLIs — useful for "ask another model to review" patterns
+# and cross-tool handoff. Lists only what's installed; the running tool can
+# decide which peer (if any) is appropriate to invite.
+print_ai_tools() {
+    local lines=""
+    for tool in claude codex gemini opencode cursor-agent aider droid amp q goose; do
+        if command -v "$tool" >/dev/null 2>&1; then
+            v=$("$tool" --version 2>/dev/null | head -n1)
+            lines+="$(printf '%-15s %s\n' "$tool" "$v")"$'\n'
+        fi
+    done
+    # GitHub Copilot CLI ships as a `gh` extension.
+    if command -v gh >/dev/null 2>&1 && gh extension list 2>/dev/null | grep -qi copilot; then
+        lines+="$(printf '%-15s %s\n' "gh copilot" "(gh extension)")"$'\n'
+    fi
+    if [ -n "$lines" ]; then
+        print_section "Available AI coding tools (CLIs for peer review / handoff)"
+        printf '%s' "$lines"
+    fi
+}
+
 # Toolchain versions — light touch, only the ones the AGENTS.md mentions.
 print_toolchain() {
     local lines=""
@@ -116,6 +137,7 @@ main() {
     print_tailscale
     print_containers
     print_services
+    print_ai_tools
     print_toolchain
 }
 
