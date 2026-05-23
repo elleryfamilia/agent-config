@@ -92,12 +92,55 @@ Cursor and Copilot CLI need a manual step each — see [Tools the installer can'
 
 ## `agent-env`
 
-A small shell script that probes the current machine and prints a markdown snapshot — host identity, Tailscale peers (if installed), Docker/Podman containers, systemd services on Linux, and detected toolchain versions. The agent runs this on demand when it needs ground truth about the environment.
+A small shell script that probes the current machine and prints a markdown snapshot — host identity, Tailscale peers (if installed), Docker/Podman containers, systemd services on Linux, available AI coding tool CLIs, and detected toolchain versions. The agent runs this on demand when it needs ground truth about the environment.
 
 Safe to run anywhere. Every probe is gated on tool availability; absent tools are skipped silently. Add it to PATH (the installer drops a symlink in `~/.local/bin/`) and invoke it directly:
 
 ```sh
 agent-env
+```
+
+Example output (sections omitted when the underlying tool isn't installed):
+
+```
+# agent-env snapshot (2026-05-22T23:50:04Z UTC)
+
+## Host
+hostname:  workstation
+user:      alice
+os:        macOS
+distro:    macOS 15.4 (build 24E248)
+arch:      arm64
+kernel:    24.4.0
+shell:     /bin/zsh
+uptime:    7 days, 8:57
+
+## Tailnet (tailscale status)
+100.x.x.x   workstation       alice@      macOS    -
+100.x.x.x   homelab-server    alice@      linux    -
+100.x.x.x   raspberry-pi-1    alice@      linux    -
+100.x.x.x   vps-prod          alice@      linux    -
+
+## Docker containers
+NAMES        IMAGE                STATUS         PORTS
+postgres     postgres:16          Up 2 days      5432/tcp
+redis        redis:7-alpine       Up 7 days      6379/tcp
+prometheus   prom/prometheus      Up 7 days      9090/tcp
+
+## Available AI coding tools (CLIs for peer review / handoff)
+claude          2.1.149 (Claude Code)
+codex           codex-cli 0.130.0
+gemini          0.26.0
+
+## Detected toolchain
+node       v24.x.x
+pnpm       10.x.x
+python3    Python 3.14.x
+uv         uv 0.11.x
+rg         ripgrep 15.x
+fd         fd 10.x
+gh         gh version 2.92.x
+docker     Docker version 29.x
 ```
 
 ## Uninstall
