@@ -16,6 +16,8 @@ curl -fsSL https://raw.githubusercontent.com/elleryfamilia/agent-config/main/boo
 
 Clones to `~/.agent-config` and runs the installer. Re-running updates the checkout and re-applies the install (idempotent).
 
+**If you already have a clone elsewhere** (e.g. you cloned manually into `~/code/agent-config`), bootstrap follows existing symlinks at known target paths — `~/AGENTS.md`, `~/.claude/CLAUDE.md`, etc. — and uses the resolved clone directory instead of creating a redundant one. Re-running the one-liner from anywhere on the same machine is safe.
+
 To preview without making changes:
 
 ```sh
